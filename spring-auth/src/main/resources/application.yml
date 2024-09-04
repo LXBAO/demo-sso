@@ -1,0 +1,11 @@
+server:
+  port : 9000
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: [classpath:/static/]
+  application:
+    name: spring-auth
+  profiles:
+    include: common

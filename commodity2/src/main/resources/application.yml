@@ -1,0 +1,47 @@
+server:
+  port : 9008
+spring:
+  application:
+    name: commodity2
+
+  cloud:
+    nacos:
+      discovery:
+        heart-beat-interval: 1000
+        server-addr: localhost:8848
+        group: SEATA_GROUP
+      config:
+        enabled: false
+        server-addr: localhost:8848
+        group: SEATA_GROUP
+        file-extension: yaml
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/test2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      username: root
+      password: 123456
+mybatis-plus:
+    mapper-locations: classpath:**/*Mapper.xml
+    configuration:
+      map-underscore-to-camel-case: true
+      cache-enabled: false
+      jdbc-type-for-null: null
+seata:
+  enabled: true
+  application-id: ccxi-abc2
+  tx-service-group: my-transaction-group
+  service:
+    vgroup-mapping:
+      my-transaction-group: default
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.0.102:8848
+      namespace: public
+      group: SEATA_GROUP
+      application: seata-server
+

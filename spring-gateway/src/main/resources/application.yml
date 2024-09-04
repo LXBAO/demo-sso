@@ -1,0 +1,27 @@
+server:
+  port : 8999
+spring:
+  application:
+    name: gateway
+  profiles:
+    include: common
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: oauth-client
+          uri: lb://oauth-client
+          predicates:
+            - Path=/oauth-client/**
+        - id: spring-auth
+          uri: lb://spring-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: commodity2
+          uri: lb://commodity2
+          predicates:
+            - Path=/commodity2/**

@@ -1,0 +1,24 @@
+server:
+  port : 9001
+spring:
+  application:
+    name: oauth-clinet
+  profiles:
+    include: common
+  cloud:
+seata:
+  enabled: true
+  application-id: ccxi-abc
+  tx-service-group: my-transaction-group
+  service:
+    vgroup-mapping:
+      my-transaction-group: default
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.0.102:8848
+      namespace: public
+      group: SEATA_GROUP
+      application: seata-server
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
